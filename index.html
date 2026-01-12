@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Unique Gift Hub</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; color: #333; }
+        header { background-color: #8b5a3c; color: white; text-align: center; padding: 2rem; }
+        header h1 { margin: 0; font-size: 2.5rem; }
+        header p { font-size: 1.2rem; }
+        .products { display: flex; flex-wrap: wrap; justify-content: center; padding: 2rem; gap: 1rem; }
+        .product { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px; padding: 1rem; text-align: center; transition: transform 0.2s; }
+        .product:hover { transform: scale(1.05); }
+        .product img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
+        .product h3 { margin: 1rem 0; color: #8b5a3c; }
+        .product p { margin: 0.5rem 0; }
+        button { background-color: #28a745; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer; font-size: 1rem; }
+        button:hover { background-color: #218838; }
+        footer { background-color: #333; color: white; text-align: center; padding: 1rem; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>The Unique Gift Hub</h1>
+        <p>Discover unique gifts for every occasion – handmade with love!</p>
+    </header>
+    <section class="products" id="product-list">
+        <!-- Products will be dynamically loaded here -->
+    </section>
+    <footer>
+        <p>&copy; 2023 The Unique Gift Hub. All rights reserved. | Contact: info@theuniquegifthub.com</p>
+    </footer>
+
+    <script>
+        // Product data (easy to edit: add/remove objects here. Images are placeholders from Unsplash – replace with your own URLs.)
+        const products = [
+            { name: "Resin Art", description: "Handcrafted resin pieces with vibrant designs, perfect for home decor.", price: 29.99, image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=200&fit=crop" },
+            { name: "Birthday Hampers", description: "Customizable hampers with sweets, balloons, and surprises for birthdays.", price: 49.99, image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=300&h=200&fit=crop" },
+            { name: "Chocolate Hampers", description: "Assorted chocolates in elegant packaging, ideal for sweet lovers.", price: 39.99, image: "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=300&h=200&fit=crop" },
+            { name: "Artificial Flowers Bouquet", description: "Lifelike silk flowers that last forever, in various colors.", price: 24.99, image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop" },
+            { name: "Real Flowers Bouquet", description: "Fresh, fragrant bouquets delivered same-day for special moments.", price: 34.99, image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=300&h=200&fit=crop" },
+            { name: "Customized Gift Hamper", description: "Personalized hampers tailored to your needs – add notes, themes, or extras.", price: 59.99, image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=300&h=200&fit=crop" },
+            // "Many more" examples – you can add as many as you want!
+            { name: "Personalized Photo Frames", description: "Custom frames with your favorite memories engraved.", price: 19.99, image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=200&fit=crop" },
+            { name: "Scented Candles Set", description: "Aromatherapy candles in soothing scents for relaxation.", price: 22.99, image: "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=300&h=200&fit=crop" }
+        ];
+
+        // Function to render products
+        function renderProducts() {
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = '';
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product';
+                productDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <p><strong>Price: $${product.price}</strong></p>
+                    <button onclick="addToCart('${product.name}')">Add to Cart</button>
+                `;
+                productList.appendChild(productDiv);
+            });
+        }
+
+        // Simple cart simulation (alert for now; expand to a real cart with localStorage or a backend)
+        function addToCart(name) {
+            alert(`${name} added to cart! (Note: This is a demo. Integrate with a payment system like Stripe for real purchases.)`);
+        }
+
+        // Load products on page load
+        window.onload = renderProducts;
+
+        // How to modify:
+        // - To add a product: products.push({ name: "New Item", description: "...", price: 10.00, image: "your-image-url.jpg" }); renderProducts();
+        // - To edit: Change values in the products array.
+        // - To remove: Use products.splice(index, 1); renderProducts();
+        // - For design changes: Edit the <style> section (e.g., change #8b5a3c to a new color).
+    </script>
+</body>
+</html>
